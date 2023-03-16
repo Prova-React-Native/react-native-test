@@ -12,22 +12,13 @@ export default function RootNavigation() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-      {/* <Stack.Navigator>
-        <Stack.Screen
           name="Register"
           component={Register}
           options={{
             headerShown: false,
           }}
         />
-      </Stack.Navigator> */}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
