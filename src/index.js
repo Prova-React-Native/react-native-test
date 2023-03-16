@@ -54,5 +54,8 @@ export function MBTNavigation() {
         }}
       />
     </MTB.Navigator>
+    <MTB.Navigator>
+      <MTB.Screen name="Login" component={Login} />
+    </MTB.Navigator>
   );
 }
