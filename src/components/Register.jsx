@@ -79,11 +79,11 @@ export default function LoginScreen({ navigation }) {
         <Paragraph>Confirmar Senha</Paragraph>
 
         <TextInput
-          mode="flat"
+          mode="outlined"
           placeholder="Confirme sua Senha"
           value={confirmarSenha}
           underlineColor= 'white'
-        //   activeOutlineColor= 'black'
+          activeOutlineColor= 'black'
           onChangeText={setConfirmarSenha}
           secureTextEntry={passwordVisible}
           right={() => (
