@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { auth } from "../config/firebase";
 
 import styles from "../utils/styles";
-export default function LoginScreen({ navigation }) {
+export default function Register({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
@@ -19,12 +19,16 @@ export default function LoginScreen({ navigation }) {
       console.log("As senhas coincidem");
     } else {
       console.log("As senhas não coincidem");
+      setError("As senhas não coincidem");
+      return;
     }
     if (checkPasswordLenght()) {
       console.log("A senha preenche o requisito");
     }
     else {
       console.log("A senha não preenche o requisito");
+      setError("A senha deve ter no mínimo 6 caracteres");
+      return;
     }
 
     createUserWithEmailAndPassword(auth, email, senha)
@@ -33,13 +37,13 @@ export default function LoginScreen({ navigation }) {
         navigation.navigate("Login");
       })
       .catch((error) => {
-        setError(error.message); // mostra a mensagem original do Firebase
-        const errorCode = error.code; // obtém o código de erro do Firebase
+        setError(error.message);
+        const errorCode = error.code;
         switch (
-          errorCode // verifica qual é o código de erro
+          errorCode
         ) {
           case "auth/email-already-in-use":
-            setError("Esse email já está em uso por outro usuário."); // mostra uma mensagem humanizada
+            setError("Esse email já está em uso por outro usuário.");
             break;
           case "auth/invalid-email":
             setError("Esse email não é válido.");
