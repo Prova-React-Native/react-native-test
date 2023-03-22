@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import styles from "../utils/styles";
 
-export default function HomeScreen() {
+export default function Home() {
   return (
     <View style={styles.container}>
       <View

@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { View } from "react-native";
 import { Button, HelperText, Paragraph, TextInput } from "react-native-paper";
@@ -14,12 +14,23 @@ export default function LoginScreen({ navigation }) {
   const [error, setError] = useState("");
 
   function handleRegister() {
-    console.log("Login usuário");
+    console.log("Registro do usuário");
+    if (checkIfPasswordsMatch()) {
+      console.log("As senhas coincidem");
+    } else {
+      console.log("As senhas não coincidem");
+    }
+    if (checkPasswordLenght()) {
+      console.log("A senha preenche o requisito");
+    }
+    else {
+      console.log("A senha não preenche o requisito");
+    }
 
-    signInWithEmailAndPassword(auth, email, senha)
+    createUserWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
         console.log(userCredential, "Usuário registrado com sucesso");
-        navigation.navigate("MTBNavigation");
+        navigation.navigate("Login");
       })
       .catch((error) => {
         setError(error.message); // mostra a mensagem original do Firebase
@@ -40,6 +51,14 @@ export default function LoginScreen({ navigation }) {
             setError("Ocorreu um erro ao acessar com este e-mail e senha.");
         }
       });
+  }
+
+  function checkIfPasswordsMatch() {
+    return senha === confirmarSenha;
+  }
+
+  function checkPasswordLenght() {
+    return senha.length >= 6;
   }
 
   return (
@@ -85,27 +104,16 @@ export default function LoginScreen({ navigation }) {
           underlineColor= 'white'
           activeOutlineColor= 'black'
           onChangeText={setConfirmarSenha}
-          secureTextEntry={passwordVisible}
-          right={() => (
-            <Icon
-              name={passwordVisible ? "eye" : "eye-off"}
-              onPress={() => setPasswordVisible(!passwordVisible)}
-            />
-          )}
+          secureTextEntry={true}
         />
+
+        <HelperText type="error" visible={!checkIfPasswordsMatch}>
+          Não conferem
+        </HelperText>
       </View>
 
       <View style={{ marginTop: 20 }}>
         <Button style={{backgroundColor: 'black'}} mode="contained" onPress={handleRegister}>
-          Acessar
-        </Button>
-      </View>
-
-      <View style={{ marginTop: 20 }}>
-        <Button style={{backgroundColor: 'black'}}
-          mode="contained"
-          onPress={() => navigation.navigate("RegisterScreen")}
-        >
           Registrar
         </Button>
       </View>
