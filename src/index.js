@@ -18,15 +18,6 @@ export default function RootNavigation() {
             headerShown: false,
           }}
         />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
-}
-
-export default function RootNavigation() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
         <Stack.Screen
           name="Register"
           component={Register}
@@ -53,9 +44,10 @@ export function MBTNavigation() {
           title: "Inicio",
         }}
       />
-    </MTB.Navigator>
-    <MTB.Navigator>
-      <MTB.Screen name="Login" component={Login} />
+      <MTB.Screen
+        name="Login"
+        component={Login}
+      />
     </MTB.Navigator>
   );
 }
