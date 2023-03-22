@@ -71,14 +71,14 @@ export default function Login({ navigation }) {
         </Button>
       </View>
 
-      {/* <View style={{ marginTop: 20 }}>
+      <View style={{ marginTop: 20 }}>
         <Button
           mode="contained"
-          onPress={() => navigation.navigate("RegisterScreen")}
+          onPress={() => navigation.navigate("Register")}
         >
           Registrar
         </Button>
-      </View> */}
+      </View>
     </View>
   )
 }
