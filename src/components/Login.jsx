@@ -4,6 +4,7 @@ import { View } from "react-native"
 import { Button, HelperText, Paragraph, TextInput } from "react-native-paper"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import styles from "../utils/styles";
+import { auth } from "../config/firebase"
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("")
@@ -14,9 +15,9 @@ export default function Login({ navigation }) {
   function handleRegister() {
     signInWithEmailAndPassword(auth, email, senha).then((userCredential) => {
       console.log(userCredential, "Usuário registrado com sucesso")
-      navigation.navigate("MTBNavigation")
+      navigation.navigate("Home")
     }).catch((error) => {
-      seterror(error.message)
+      setError(error.message)
       const errorCode = error.code
       switch (
         errorCode
