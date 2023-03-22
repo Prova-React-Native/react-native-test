@@ -3,6 +3,7 @@ import { useState } from "react"
 import { View } from "react-native"
 import { Button, HelperText, Paragraph, TextInput } from "react-native-paper"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import styles from "../utils/styles";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("")
@@ -35,13 +36,15 @@ export default function Login({ navigation }) {
     })
   }
   return (
-    <View>
+    <View style={styles.container}>
       <Paragraph>Faça o seu login</Paragraph>
       <HelperText type="error">{error}</HelperText>
       <View>
         <Paragraph>E-mail</Paragraph>
         <TextInput
           mode="outlined"
+          backgroundColor= 'black'
+          activeOutlineColor= 'black'
           placeholder="Digite seu e-mail"
           value={email}
           onChangeText={setEmail}
@@ -51,11 +54,12 @@ export default function Login({ navigation }) {
         <Paragraph>Senha</Paragraph>
 
         <TextInput
-          mode="flat"
+          mode="outlined"
           placeholder="Digite sua Senha"
           value={senha}
           onChangeText={setSenha}
           secureTextEntry={passwordVisible}
+          activeOutlineColor= 'black'
           right={() => (
             <Icon
               name={passwordVisible ? "eye" : "eye-off"}
@@ -66,13 +70,14 @@ export default function Login({ navigation }) {
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <Button mode="contained" onPress={handleRegister}>
-          Acessar
+        <Button style={{backgroundColor: 'black'}} mode="contained" onPress={handleRegister}>
+          Entrar
         </Button>
       </View>
 
       <View style={{ marginTop: 20 }}>
         <Button
+          style={{backgroundColor: 'black'}}
           mode="contained"
           onPress={() => navigation.navigate("Register")}
         >
