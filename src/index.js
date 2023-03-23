@@ -5,12 +5,12 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export default function RootNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Login"
           component={Login}
@@ -27,7 +27,7 @@ export default function RootNavigation() {
         />
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={MBTNavigation}
           options={{
             headerShown: false,
           }}
@@ -41,20 +41,36 @@ const MTB = createMaterialBottomTabNavigator();
 
 export function MBTNavigation() {
   return (
-    <MTB.Navigator>
+    <MTB.Navigator
+      activeColor="gray"
+      inactiveColor="black"
+      barStyle={{ backgroundColor: "white" }}
+    >
       <MTB.Screen
-        name="Home"
-        component={Home}
+        name="Register"
+        component={Register}
         options={{
-          tabBarIcon: "android",
-
-          title: "Inicio",
+          tabBarIcon: "phone",
+          title: "Contato",
         }}
       />
-      <MTB.Screen
-        name="Login"
-        component={Login}
-      />
+        <MTB.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: "home",
+            title: "Inicio",
+          }}
+        />
+        <MTB.Screen
+          name="Login"
+          component={Login}
+          options={{
+            tabBarAccessibilityLabel: false,
+            tabBarIcon: "exit-to-app",
+            title: "Sair",
+          }}
+        />
     </MTB.Navigator>
   );
 }
