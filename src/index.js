@@ -27,7 +27,7 @@ export default function RootNavigation() {
         />
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={MBTNavigation}
           options={{
             headerShown: false,
           }}
