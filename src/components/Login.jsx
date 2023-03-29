@@ -62,8 +62,9 @@ export default function Login({ navigation }) {
           secureTextEntry={passwordVisible}
           activeOutlineColor= 'black'
           right={() => (
-            <Icon
-              name={passwordVisible ? "eye" : "eye-off"}
+            <TextInput.Icon
+              icon={passwordVisible ? "eye" : "eye-off"}
+              size={20}
               onPress={() => setPasswordVisible(!passwordVisible)}
             />
           )}

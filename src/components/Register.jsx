@@ -15,19 +15,20 @@ export default function Register({ navigation }) {
 
   function handleRegister() {
     console.log("Registro do usuário");
+    if (!checkIfEmailIsValid()) {
+      setError("O e-mail não é válido");
+      return;
+    }
     if (checkIfPasswordsMatch()) {
       console.log("As senhas coincidem");
-    } else {
+    }
+    else {
       console.log("As senhas não coincidem");
       setError("As senhas não coincidem");
       return;
     }
-    if (checkPasswordLenght()) {
-      console.log("A senha preenche o requisito");
-    }
-    else {
-      console.log("A senha não preenche o requisito");
-      setError("A senha deve ter no mínimo 6 caracteres");
+    if (!checkIfPasswordIsValid()) {
+      setError("A senha deve atender os requisitos mínimos de segurança: no mínimo 6 caracteres, uma letra maiúscula, um número e um caractere especial");
       return;
     }
 
@@ -61,8 +62,12 @@ export default function Register({ navigation }) {
     return senha === confirmarSenha;
   }
 
-  function checkPasswordLenght() {
-    return senha.length >= 6;
+  function checkIfPasswordIsValid() {
+    return senha.match(/^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$/)
+  }
+
+  function checkIfEmailIsValid() {
+    return email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
   }
 
   return (
